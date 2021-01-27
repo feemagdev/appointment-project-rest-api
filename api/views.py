@@ -2,6 +2,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
+from django_filters.rest_framework import DjangoFilterBackend
 from api import serializers
 from api import models
 
@@ -28,12 +29,18 @@ class PersonalAppointmentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     serializer_class = serializers.PersonalAppointmentSerializer
     queryset = models.PersonalAppointment.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['client_id', 'employee_id', 'appointment_date',
+                        'appointment_time', 'confirmed', 'date_added']
 
 
 class BusinessAppointmentViewSet(viewsets.ModelViewSet):
     permission_classes = (IsAuthenticated,)
     serializer_class = serializers.BusinessAppointmentSerializer
     queryset = models.BusinessAppointment.objects.all()
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['bclient_id', 'employee_id', 'appointment_date',
+                        'appointment_time', 'confirmed', 'date_added']
 
 
 class CompanyViewSet(viewsets.ModelViewSet):
