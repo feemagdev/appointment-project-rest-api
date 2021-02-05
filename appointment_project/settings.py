@@ -41,7 +41,9 @@ INSTALLED_APPS = [
     'rest_framework',
     'rest_framework.authtoken',
     'api',
-    'django_filters'
+    'django_filters',
+    'corsheaders',
+
 ]
 
 REST_FRAMEWORK = {
@@ -59,6 +61,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'appointment_project.urls'
@@ -81,7 +84,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'appointment_project.wsgi.application'
 
-
+CORS_ORIGIN_ALLOW_ALL = True
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
 
